@@ -16,6 +16,11 @@ namespace TimedAssignmentAPI.Models
         [Required]
         [MaxLength(500)]
         public string Text { get; set; }
-        public List<string> Comments { get; set; }
+        // public List<string> Comments { get; set; } -- this will need to be comment entity
+        
+
+        [Required]
+        [MaxLength(100)]
+        public string Username { get; set; }
     }
 }

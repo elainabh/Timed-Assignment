@@ -10,6 +10,6 @@ namespace TimedAssignmentAPI
     public class PostDbContext : DbContext
     {
          public PostDbContext(DbContextOptions<PostDbContext> options) : base(options) { }
-         public DbSet<PostDbContext> Post { get; set; }
+         public DbSet<Post> Post { get; set; }
     }
 }
