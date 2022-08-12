@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TimedAssignmentAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TimedAssignmentAPI.Controllers
 {
@@ -24,10 +25,11 @@ namespace TimedAssignmentAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            _context.Posts.Add(new Post()
+            _context.Post.Add(new Post()
             {
                 Title = model.Title,
                 Text = model.Text,
+                Username = model.Username,
             });
             await _context.SaveChangesAsync();
             return Ok();
