@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TimedAssignmentAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using TimedAssignmentAPI.Controllers;
 
 namespace TimedAssignmentAPI.Controllers
 {
@@ -38,8 +39,27 @@ namespace TimedAssignmentAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetMedia()
         {
+
+        
             var post = await _context.Post.ToListAsync();
             return Ok(post);
+            
+        }
+
+        public async Task<List<PostDetail> GetAllCommentsByPostId (int commentsId)
+        {
+            foreach(int Id in Comments)
+            {
+                if(Id = PostId)
+                {
+                    return Ok(PostDetail);
+                }
+                else 
+                {
+                    return BadRequest(ModelState);
+                }
+
+            }
         }
     }
 }
