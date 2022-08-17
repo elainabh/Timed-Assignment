@@ -37,29 +37,52 @@ namespace TimedAssignmentAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMedia()
-        {
+        public async Task<IActionResult> GetAllMedia()
+        {     
+            var posts = await _context.Post.ToListAsync();
 
-        
-            var post = await _context.Post.ToListAsync();
-            return Ok(post);
+            List<PostListItem> postListItems = new List<PostListItem>(); 
+
+            foreach(Post postEntity in posts)
+            {
+                postListItems.Add(
+                    new PostListItem(){
+                        Id = postEntity.Id,
+                        Title = postEntity.Title,
+                        Text = postEntity.Text,
+                        Username = postEntity.Username
+                    }
+                );
+            }
+
+            foreach(PostListItem post in postListItems)
+           { 
+            post.Comments = GetAllCommentsByPostId(post.Id);
+           }
+            return Ok(posts);
             
         }
 
-        public async Task<List<PostDetail> GetAllCommentsByPostId (int commentsId)
-        {
-            foreach(int Id in Comments)
-            {
-                if(Id = PostId)
-                {
-                    return Ok(PostDetail);
-                }
-                else 
-                {
-                    return BadRequest(ModelState);
-                }
 
+        public List<CommentDetail> GetAllCommentsByPostId (int PostId)
+        {
+            var postComments = _context.CommentsDetail.ToList();
+
+            List<CommentDetail> commentDetails = new List<CommentDetail>();
+
+            foreach(Comments comment in postComments)
+            {
+                if(PostId == comment.PostId)
+                {
+                commentDetails.Add(
+                    new CommentDetail(){
+                        Text = comment.Text,
+                        Username = comment.Username
+                    }
+                );
+                }
             }
+            return commentDetails;
         }
     }
 }

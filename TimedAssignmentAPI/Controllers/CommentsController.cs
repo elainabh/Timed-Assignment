@@ -25,10 +25,11 @@ namespace TimedAssignmentAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            _context.Comments.Add(new Comments()
+            _context.CommentsDetail.Add(new Comments()
             {
                 Text = model.Text,
-                Username = model.Username
+                Username = model.Username,
+                PostId = model.PostId
             });
             await _context.SaveChangesAsync();
             return Ok();
@@ -37,7 +38,7 @@ namespace TimedAssignmentAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetComments()
         {
-            var postComments = await _context.Comments.ToListAsync();
+            var postComments = await _context.CommentsDetail.ToListAsync();
             return Ok(postComments);
         }
     }
