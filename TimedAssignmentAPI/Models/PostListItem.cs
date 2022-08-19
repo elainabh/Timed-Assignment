@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace TimedAssignmentAPI.Models
 {
-    public class Post
+    public class PostListItem
     {
-        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(100)]
@@ -16,7 +15,7 @@ namespace TimedAssignmentAPI.Models
         [Required]
         [MaxLength(500)]
         public string Text { get; set; }
-        // public virtual List<CommentDetail> Comments { get; set; } = new List<Comments>();
+        public List<CommentDetail> Comments { get; set; } = new List<CommentDetail>();
         [Required]
         [MaxLength(100)]
         public string Username { get; set; }

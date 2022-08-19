@@ -11,5 +11,6 @@ namespace TimedAssignmentAPI
     {
          public PostDbContext(DbContextOptions<PostDbContext> options) : base(options) { }
          public DbSet<Post> Post { get; set; }
+         public DbSet<Comments> CommentsDetail { get; }
     }
 }
